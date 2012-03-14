@@ -13,11 +13,11 @@ this repo and that's it. No dependencies - no problems.
 
 I typically start Emacs as daemon (emacs --daemon) at startup. Then I just
 connect to it using emacsclient (emacsclient -c -n). It's fast (almost as fast
-as vim ;)) and convenient. 
+as vim ;)) and convenient.
 
 Files:
-.emacs.d/ - modules and themes
-.emacs - standard init file
+* .emacs.d/ - modules and themes
+* .emacs - standard init file
 
 bash
 ----
@@ -25,4 +25,4 @@ bash
 I don't configure bash in any special way - I just use some aliases.
 
 Files:
-.bashrc - aliases
+* .bashrc - aliases

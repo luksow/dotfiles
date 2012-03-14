@@ -1,15 +1,20 @@
 ;;; Load list
-(setq user-modules-path "~/.emacs.d/modules/") ; here goes additional modules
+(setq user-modules-path "~/.emacs.d/modules/") ; here go additional modules
 (add-to-list 'load-path user-modules-path)
+(load (format "%shaskell-mode/haskell-site-file.el" user-modules-path))
 
 ;;; Themes & UI
 (setq user-themes-path "~/.emacs.d/themes/") ; here goes themes
 (add-to-list 'custom-theme-load-path user-themes-path)
 (load-theme 'zenburn t) ; set zenburn as theme
-(custom-set-faces ; some customizations to the theme (it looks a bit ugly in cc-mode without this)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(font-lock-constant-face ((t (:foreground "white"))))
  '(font-lock-function-name-face ((t (:foreground "wheat"))))
  '(font-lock-type-face ((t (:foreground "cornsilk"))))
- '(font-lock-constant-face ((t (:foreground "white"))))
  '(font-lock-variable-name-face ((t (:foreground "wheat")))))
 (setq inhibit-startup-screen t) ; no startup screen
 (setq scroll-margin 0 ; some nice scrolling
@@ -49,6 +54,9 @@
 (tabbar-mode 1) ; show tabbar
 (global-set-key (kbd "C-1") 'tabbar-forward-tab) ; forward tab
 (global-set-key (kbd "C-2") 'tabbar-backward-tab) ; backward tab
+;; haskell-mode
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 
 ;;; Minors
 (setq user-full-name "Łukasz Sowa") ; genius behind this file
@@ -63,3 +71,9 @@
   )
 (global-set-key (kbd "<f5>") 'toggle-fullscreen) ; toggle fullscreen
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(org-agenda-files (quote ("~/Dropbox/Org//dlugi.org" "~/Dropbox/Org//linki.org" "~/Dropbox/Org//notatki.org" "~/Dropbox/Org//todo.org" "~/Dropbox/Org//wakacje.org"))))
