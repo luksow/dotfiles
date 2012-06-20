@@ -1,0 +1,28 @@
+use_xft yes
+xftalpha 1
+xftfont Inconsolata:size=10
+update_interval 60
+own_window_class Conky
+own_window yes
+own_window_transparent yes
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+draw_shades no
+draw_outline no
+draw_borders no # Draw borders around text
+stippled_borders 8
+border_width 0
+background yes
+default_color white
+default_shade_color black
+default_outline_color white
+alignment top_left
+override_utf8_locale yes
+
+TEXT
+${exec emacs -batch -l ~/.emacs -eval '(org-batch-agenda "a" org-agenda-span 14)'}
+
+${exec emacs -batch -l ~/.emacs -eval '(org-batch-agenda "ZAPYCHACZ")' | grep -v 'Press'}
+
+${exec emacs -batch -l ~/.emacs -eval '(org-batch-agenda "PILNE")' | grep -v 'Press'}
+
