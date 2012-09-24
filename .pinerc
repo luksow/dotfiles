@@ -73,7 +73,9 @@ signature-file=
 # Default condition for all of the features is no-.
 feature-list=enable-alternate-editor-cmd,
 	quell-dead-letter-on-cancel,
-	enable-alternate-editor-implicitly
+	enable-alternate-editor-implicitly,
+	mark-fcc-seen,
+	combined-folder-display
 
 # Alpine executes these keys upon startup (e.g. to view msg 13: i,j,1,3,CR,v)
 initial-keystroke-list=
@@ -174,7 +176,7 @@ unknown-character-set=
 
 # Specifies the program invoked by ^_ in the Composer,
 # or the "enable-alternate-editor-implicitly" feature.
-editor=emacsclient -nw
+editor=emacs -nw
 
 # Specifies the program invoked by ^T in the Composer.
 speller=
@@ -339,7 +341,7 @@ incoming-check-list=
 dead-letter-files=
 
 # Sets the filename for the newmail fifo (named pipe). Unix only.
-newmail-fifo-path=/tmp/alpine.fifo
+newmail-fifo-path=
 
 # Sets the width for the NewMail screen.
 newmail-window-width=
@@ -370,7 +372,7 @@ address-book=
 global-address-book=
 
 # Set by Alpine; controls beginning-of-month sent-mail pruning.
-last-time-prune-questioned=112.6
+last-time-prune-questioned=112.9
 
 # Set by Alpine; controls display of "new version" message.
 last-version-used=6.02

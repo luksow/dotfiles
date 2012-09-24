@@ -2,17 +2,15 @@
 (setq user-modules-path "~/.emacs.d/modules/") ; here go additional modules
 (add-to-list 'load-path user-modules-path)
 (load (format "%shaskell-mode/haskell-site-file.el" user-modules-path))
+(add-to-list 'load-path (format "%s/go" user-modules-path))
 (add-to-list 'load-path (format "%snav/" user-modules-path))
+(add-to-list 'load-path (format "%sac/" user-modules-path))
 
 ;;; Themes & UI
-(setq user-themes-path "~/.emacs.d/themes/") ; here goes themes
+(setq user-themes-path "~/.emacs.d/themes/") ; here go themes
 (add-to-list 'custom-theme-load-path user-themes-path)
 (load-theme 'zenburn t) ; set zenburn as theme
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(font-lock-constant-face ((t (:foreground "white"))))
  '(font-lock-function-name-face ((t (:foreground "wheat"))))
  '(font-lock-type-face ((t (:foreground "cornsilk"))))
@@ -26,7 +24,7 @@
 (column-number-mode t) ; show column number on bottom bar
 (blink-cursor-mode -1) ; no blinking cursor
 (tool-bar-mode -1) ; no toolbar
-(setq default-frame-alist '((font . "-unknown-Inconsolata-normal-normal-normal-*-15-*-*-*-m-0-iso10646-1"))) ; set font for graphical window (workaround for emacs --daemon); the value here is taken from (describe-font); Inconsolata font: http://levien.com/type/myfonts/inconsolata.html
+(setq default-frame-alist '((font . "Inconsolata-10"))) ; set font for graphical window (workaround for emacs --daemon); the value here is taken from (describe-font); Inconsolata font: http://levien.com/type/myfonts/inconsolata.html
 (setq-default show-trailing-whitespace t) ; show trailing whitespaces
 
 ;;; Global keybindings
@@ -39,7 +37,7 @@
 (setq x-select-enable-clipboard t) ; integrate with X clipboard
 (setq auto-save-default nil) ; no autosave
 (setq make-backup-files nil) ; no backup
-(put 'narrow-to-region 'disabled nil) ;; easy narrowing (Light Table like ;)
+(put 'narrow-to-region 'disabled nil) ;; easy narrowing (Light Table alike ;))
 (which-function-mode t)
 (defun clone-buffer-and-narrow-to-function ()
   (interactive)
@@ -54,13 +52,16 @@
 (semantic-mode t)
 (global-semantic-decoration-mode t)
 (global-semantic-highlight-func-mode t)
-(global-semantic-idle-completions-mode t)
 (global-semantic-idle-local-symbol-highlight-mode t)
 (global-semantic-show-unmatched-syntax-mode t)
 (global-semantic-idle-summary-mode t)
 (global-semantic-highlight-edits-mode t)
 (global-semantic-idle-scheduler-mode t)
 (global-semanticdb-minor-mode t)
+;; auto-complete
+(require 'auto-complete-config)
+(add-to-list 'ac-dictionary-directories (format "%sac/ac-dict" user-modules-path))
+(ac-config-default)
 ;; c-mode
 (setq c-default-style "bsd") ; the only true style
 ;; org-mode
@@ -82,9 +83,14 @@
 ;; haskell-mode
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+(add-hook 'haskell-mode-hook 'auto-complete-mode)
+;; go-lang mode
+(require 'go-mode-load)
+(require 'go-autocomplete)
+(require 'auto-complete-config)
+(add-hook 'go-mode-hook 'auto-complete-mode)
 ;; text-mode
 (add-hook 'text-mode-hook 'flyspell-mode) ; spell checking
-(add-hook 'text-mode-hook 'turn-on-auto-fill) ; autofill
 ;; alpine
 (add-to-list 'auto-mode-alist '("\/tmp\/pico.[0-9]+" . text-mode)) ; move to text mode on new mail
 

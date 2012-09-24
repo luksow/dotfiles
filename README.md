@@ -11,18 +11,46 @@ is always up-to-date. I don't use any packages from my Linux distro so that I
 can easily port my environment to any other machine. I just compile Emacs, pull
 this repo and that's it. No dependencies - no problems.
 
-I typically start Emacs as daemon (emacs --daemon) at startup. Then I just
-connect to it using emacsclient (emacsclient -c -n). It's fast (almost as fast
-as vim ;)) and convenient.
-
 Files:
 * .emacs.d/ - modules and themes
-* .emacs - standard init file
+* .emacs - standard init file, it's well-commented
 
-bash
-----
+Xmonad
+------
 
-I don't configure bash in any special way - I just use some aliases.
+Xmonad is the best WM I've ever used. It really rocks! Just check it out! I
+spent awful lot of time configuring it but now it boosts my productivity
+every day. I use it together with xmobar and trayer.
 
 Files:
-* .bashrc - aliases
+* .xmonad/xmonad.hs - main configuration file
+* .xmonad/xmobar.hs - xmobar configuration file
+* .xmonad/*.sh - helpers scripts for xmobar
+
+conky
+-----
+
+I use conky for on-desktop 14-days agenda straight from Emacs org-mode. It's
+just great!
+
+Files:
+* .conkyrc - standard rc file
+
+zsh
+---
+
+I recently switched from bash to zsh as it's more feature-rich. My config for
+zsh contains some aliases, keybindings, custom prompt, custom file names
+completion and some history tweaks.
+
+Files:
+* .zshrc - standard rc file
+
+alpine
+------
+
+Nothing really to describe, just basic email client configuration :).
+
+Files:
+* .pinerc - standard rc file
+
