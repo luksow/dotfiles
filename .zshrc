@@ -18,7 +18,7 @@ bindkey "^[[3~" delete-char # Del
 bindkey "^[[1;5C" forward-word # Ctrl + Right
 bindkey "^[[1;5D" backward-word # Ctrl + Left
 
-export PATH="$HOME/.cabal/bin":$PATH
+export PATH="/home/luke/scripts:/home/luke/.cabal/bin":$PATH
 
 HISTFILE=~/.zshhistory
 HISTSIZE=5000

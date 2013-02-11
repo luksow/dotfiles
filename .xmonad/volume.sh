@@ -4,7 +4,7 @@
 amixer get Master | grep -Eo '\[off\]' > /dev/null
 if [ $? == 0 ]
 then
-    echo '  M'
+    echo '   M'
     exit 0
 fi
 

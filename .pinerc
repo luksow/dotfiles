@@ -136,7 +136,7 @@ incoming-startup-rule=
 pruning-rule=
 
 # Controls behavior when reopening an already open folder.
-folder-reopen-rule=
+folder-reopen-rule=yes-yes
 
 # Style that MESSAGE INDEX is displayed in when threading.
 threading-display-style=
@@ -372,7 +372,7 @@ address-book=
 global-address-book=
 
 # Set by Alpine; controls beginning-of-month sent-mail pruning.
-last-time-prune-questioned=112.9
+last-time-prune-questioned=112.11
 
 # Set by Alpine; controls display of "new version" message.
 last-version-used=6.02

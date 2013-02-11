@@ -16,9 +16,5 @@ alignment top_left
 override_utf8_locale yes
 
 TEXT
-${exec emacs -batch -l ~/.emacs -eval '(org-batch-agenda "a" org-agenda-span 14)'}
-
-${exec emacs -batch -l ~/.emacs -eval '(org-batch-agenda "ZAPYCHACZ")' | grep -v 'Press'}
-
-${exec emacs -batch -l ~/.emacs -eval '(org-batch-agenda "PILNE")' | grep -v 'Press'}
+${exec ~/scripts/org-agenda}
 

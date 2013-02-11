@@ -1,7 +1,8 @@
-;;; Load list
+ ;;; Load list
 (setq user-modules-path "~/.emacs.d/modules/") ; here go additional modules
 (add-to-list 'load-path user-modules-path)
 (load (format "%shaskell-mode/haskell-site-file.el" user-modules-path))
+(add-to-list 'load-path (format "%s/haskell-mode/ghc-mod/" user-modules-path))
 (add-to-list 'load-path (format "%s/go" user-modules-path))
 (add-to-list 'load-path (format "%snav/" user-modules-path))
 (add-to-list 'load-path (format "%sac/" user-modules-path))
@@ -9,7 +10,9 @@
 ;;; Themes & UI
 (setq user-themes-path "~/.emacs.d/themes/") ; here go themes
 (add-to-list 'custom-theme-load-path user-themes-path)
-(load-theme 'zenburn t) ; set zenburn as theme
+(if window-system
+    (progn
+      (load-theme 'zenburn t))) ; set zenburn as theme
 (custom-set-faces
  '(font-lock-constant-face ((t (:foreground "white"))))
  '(font-lock-function-name-face ((t (:foreground "wheat"))))
@@ -49,6 +52,7 @@
 (global-set-key (kbd "C-c n") 'clone-buffer-and-narrow-to-function)
 
 ;;; Modules
+;; semantic
 (semantic-mode t)
 (global-semantic-decoration-mode t)
 (global-semantic-highlight-func-mode t)
@@ -67,7 +71,7 @@
 ;; org-mode
 (setq org-directory "~/Dropbox/Org/") ; home for org files
 (setq org-mobile-directory "~/Dropbox/MobileOrg/") ; home for mobile-org files
-(setq org-agenda-files (file-expand-wildcards (format "%s/*.org" org-directory))) ; adds files to the agenda from org-directory set above
+(setq org-agenda-files (file-expand-wildcards (format "%s/todo.org" org-directory))) ; adds files to the agenda from org-directory set above
 (setq org-mobile-inbox-for-pull (format "%s/inbox.org" org-mobile-directory)) ; sets inbox for mobile-org
 (global-set-key (kbd "C-c l") 'org-store-link) ; store link in org-mode
 (global-set-key (kbd "C-c a") 'org-agenda) ; show agenda
@@ -81,6 +85,13 @@
 (nav-disable-overeager-window-splitting)
 (global-set-key [f8] 'nav-toggle)
 ;; haskell-mode
+(autoload 'ghc-init "ghc" nil t)
+(add-hook 'haskell-mode-hook (lambda ()
+                               (ghc-init)
+			       (add-to-list 'ac-sources 'ac-source-ghc-mod)
+                               (flymake-mode 1)
+			       (global-set-key (kbd "C-M-d") 'kill-whole-line)))
+
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 (add-hook 'haskell-mode-hook 'auto-complete-mode)
@@ -106,5 +117,16 @@
   (x-send-client-message nil 0 nil "_NET_WM_STATE" 32 '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0))
   )
 (global-set-key (kbd "<f5>") 'toggle-fullscreen) ; toggle fullscreen
-;; shift + up correction
+;; key corrections
 (define-key input-decode-map "\e[1;2A" [S-up])
+(define-key input-decode-map "\e[1;2B" [S-down])
+(define-key input-decode-map "\e[1;2C" [S-right])
+(define-key input-decode-map "\e[1;2D" [S-left])
+(define-key input-decode-map "\e[1;5A" [C-up])
+(define-key input-decode-map "\e[1;5B" [C-down])
+(define-key input-decode-map "\e[1;5C" [C-right])
+(define-key input-decode-map "\e[1;5D" [C-left])
+(define-key input-decode-map "\e[1;6A" [C-S-up])
+(define-key input-decode-map "\e[1;6B" [C-S-down])
+(define-key input-decode-map "\e[1;6C" [C-S-right])
+(define-key input-decode-map "\e[1;6D" [C-S-left])

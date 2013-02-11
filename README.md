@@ -54,3 +54,11 @@ Nothing really to describe, just basic email client configuration :).
 Files:
 * .pinerc - standard rc file
 
+tmux
+----
+
+Just xterm keys.
+
+Files:
+* .tmux.conf - standard conf file
+

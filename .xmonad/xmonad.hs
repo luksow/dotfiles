@@ -8,7 +8,6 @@ import XMonad.Layout.Fullscreen hiding (fullscreenEventHook)
 import XMonad.Layout.Minimize
 import XMonad.Layout.NoBorders
 import XMonad.Layout.ToggleLayouts
-import XMonad.Operations
 import XMonad.Prompt
 import XMonad.Prompt.RunOrRaise
 import XMonad.Util.EZConfig (additionalKeys)
@@ -19,8 +18,7 @@ spawnStandardTools = do
   spawnOn "2" "kadu"
   spawnOn "2" "skype"
   spawnOn "2" "xchat"
-  spawnOn "3" "gnome-terminal -e alpine"
-  spawnOn "4" "emacs"
+  spawnOn "3" "emacs"
 
 spawnStartupApps = do
   spawn "sudo ldm -g 100 -u 1000 &"
@@ -30,7 +28,7 @@ spawnStartupApps = do
 
 main = do
   spawn "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --transparent true --tint 0x000000 --height 20 &"
-  xmpproc <- spawnPipe "xmobar ~/.xmonad/xmobar.hs"
+  xmpproc <- spawnPipe "~/.cabal/bin/xmobar ~/.xmonad/xmobar.hs"
   spawnStartupApps
   xmonad $ defaultConfig { terminal = "gnome-terminal"
                          , manageHook = manageDocks <+> manageSpawn <+> manageHook defaultConfig
