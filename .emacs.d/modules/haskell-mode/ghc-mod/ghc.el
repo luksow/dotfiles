@@ -13,7 +13,7 @@
 
 ;;; Code:
 
-(defconst ghc-version "1.11.1")
+(defconst ghc-version "2.0.0")
 
 ;; (eval-when-compile
 ;;  (require 'haskell-mode))
@@ -33,12 +33,13 @@
 ;;;
 
 (defun ghc-find-C-h ()
-  (if keyboard-translate-table
-      (aref keyboard-translate-table ?\C-h)
-    ?\C-h))
+  (or
+   (when keyboard-translate-table
+     (aref keyboard-translate-table ?\C-h))
+   ?\C-h))
 
 (defvar ghc-completion-key  "\e\t")
-(defvar ghc-document-key    "\e\C-l")
+(defvar ghc-document-key    "\e\C-d")
 (defvar ghc-import-key      "\e\C-m")
 (defvar ghc-previous-key    "\ep")
 (defvar ghc-next-key        "\en")

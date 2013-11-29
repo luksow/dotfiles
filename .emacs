@@ -1,10 +1,11 @@
  ;;; Load list
 (setq user-modules-path "~/.emacs.d/modules/") ; here go additional modules
 (add-to-list 'load-path user-modules-path)
-(load (format "%shaskell-mode/haskell-site-file.el" user-modules-path))
+(add-to-list 'load-path (format "%s/haskell-mode/" user-modules-path))
+(add-to-list 'Info-default-directory-list (format "%s/haskell-mode/" user-modules-path))
 (add-to-list 'load-path (format "%s/haskell-mode/ghc-mod/" user-modules-path))
+(add-to-list 'load-path (format "%s/scala-mode2/" user-modules-path))
 (add-to-list 'load-path (format "%s/go" user-modules-path))
-(add-to-list 'load-path (format "%snav/" user-modules-path))
 (add-to-list 'load-path (format "%sac/" user-modules-path))
 
 ;;; Themes & UI
@@ -80,11 +81,13 @@
 (tabbar-mode 1) ; show tabbar
 (global-set-key (kbd "C-1") 'tabbar-forward-tab) ; forward tab
 (global-set-key (kbd "C-2") 'tabbar-backward-tab) ; backward tab
-;; nav
-(require 'nav)
-(nav-disable-overeager-window-splitting)
-(global-set-key [f8] 'nav-toggle)
+;; scala-mode2
+(require 'scala-mode2)
+(add-hook 'scala-mode-hook '(lambda ()
+  (local-set-key (kbd "RET") 'newline-and-indent)
+))
 ;; haskell-mode
+(require 'haskell-mode-autoloads)
 (autoload 'ghc-init "ghc" nil t)
 (add-hook 'haskell-mode-hook (lambda ()
                                (ghc-init)
@@ -104,6 +107,13 @@
 (add-hook 'text-mode-hook 'flyspell-mode) ; spell checking
 ;; alpine
 (add-to-list 'auto-mode-alist '("\/tmp\/pico.[0-9]+" . text-mode)) ; move to text mode on new mail
+;; disaster
+(require 'disaster)
+(add-hook 'c-mode-common-hook (lambda ()
+				(define-key c-mode-base-map (kbd "C-c d") 'disaster)))
+;; dirtree
+(require 'dirtree)
+(global-set-key (kbd "<f6>") 'dirtree)
 
 ;;; Minors
 (setq user-full-name "Łukasz Sowa") ; genius behind this file
