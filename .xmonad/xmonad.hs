@@ -4,6 +4,7 @@ import XMonad.Actions.SpawnOn
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops
 import XMonad.Hooks.ManageDocks
+import XMonad.Hooks.SetWMName
 import XMonad.Layout.Fullscreen hiding (fullscreenEventHook)
 import XMonad.Layout.Minimize
 import XMonad.Layout.NoBorders
@@ -15,8 +16,6 @@ import XMonad.Util.Run (spawnPipe)
 
 spawnStandardTools = do
   spawnOn "1" "chromium"
-  spawnOn "2" "kadu"
-  spawnOn "2" "skype"
   spawnOn "2" "xchat"
   spawnOn "3" "emacs"
 
@@ -24,15 +23,15 @@ spawnStartupApps = do
   spawn "sudo ldm -g 100 -u 1000 &"
   spawn "wicd-gtk --tray &"
   spawn "while true; do ping google.com -c1; if [ $? == 0 ]; then break; fi; sleep 5; done; dropboxd &"
-  spawn "conky &"
 
 main = do
   spawn "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --transparent true --tint 0x000000 --height 20 &"
   xmpproc <- spawnPipe "~/.cabal/bin/xmobar ~/.xmonad/xmobar.hs"
   spawnStartupApps
-  xmonad $ defaultConfig { terminal = "gnome-terminal"
+  xmonad $ defaultConfig { startupHook = setWMName "LG3D"
+                         , terminal = "gnome-terminal"
                          , manageHook = manageDocks <+> manageSpawn <+> manageHook defaultConfig
-                         , layoutHook = (toggleLayouts $ noBorders (fullscreenFull Full)) $ avoidStruts $ minimize $ layoutHook defaultConfig
+                         , layoutHook = (toggleLayouts $ noBorders (fullscreenFull Full)) $ smartBorders $ avoidStruts $ minimize $ layoutHook defaultConfig
                          , logHook = dynamicLogWithPP xmobarPP { ppOutput = hPutStrLn xmpproc
                                                                , ppTitle = xmobarColor "green" "" . shorten 50
                                                                }
