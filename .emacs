@@ -32,7 +32,7 @@
 (setq-default show-trailing-whitespace t) ; show trailing whitespaces
 
 ;;; Global keybindings
-(global-set-key [C-tab] 'next-multiframe-window) ; switch windows
+(global-set-key [C-tab] 'other-window) ; switch windows
 (global-set-key (kbd "C-M-d") 'kill-whole-line) ; eclipse-like line killing
 (global-set-key (kbd "C-g") 'goto-line) ; goto line
 
