@@ -18,7 +18,7 @@ bindkey "^[[3~" delete-char # Del
 bindkey "^[[1;5C" forward-word # Ctrl + Right
 bindkey "^[[1;5D" backward-word # Ctrl + Left
 
-export PATH="/home/luke/scripts:/home/luke/.cabal/bin":$PATH
+export PATH="/home/luke/play-2.1.5:/home/luke/scripts:/home/luke/.cabal/bin:/home/luke/.gem/ruby/2.0.0/bin/":$PATH
 
 HISTFILE=~/.zshhistory
 HISTSIZE=5000
