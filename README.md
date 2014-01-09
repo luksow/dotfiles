@@ -62,3 +62,10 @@ Just xterm keys.
 Files:
 * .tmux.conf - standard conf file
 
+xinit
+-----
+
+Just some basic settings for starting bare xmonad.
+
+Files:
+* .xinitrc
