@@ -5,6 +5,9 @@
 (add-to-list 'Info-default-directory-list (format "%s/haskell-mode/" user-modules-path))
 (add-to-list 'load-path (format "%s/haskell-mode/ghc-mod/" user-modules-path))
 (add-to-list 'load-path (format "%s/scala-mode2/" user-modules-path))
+(add-to-list 'load-path (format "%s/ensime-emacs/" user-modules-path))
+(add-to-list 'load-path (format "%s/sbt-mode/" user-modules-path))
+(add-to-list 'load-path (format "%s/company-mode/" user-modules-path))
 (add-to-list 'load-path (format "%s/go" user-modules-path))
 (add-to-list 'load-path (format "%sac/" user-modules-path))
 
@@ -87,6 +90,8 @@
 (add-hook 'scala-mode-hook '(lambda ()
   (local-set-key (kbd "RET") 'newline-and-indent)
 ))
+(require 'ensime)
+(add-hook 'scala-mode-hook 'ensime-scala-mode-hook)
 ;; haskell-mode
 (require 'haskell-mode-autoloads)
 (autoload 'ghc-init "ghc" nil t)
