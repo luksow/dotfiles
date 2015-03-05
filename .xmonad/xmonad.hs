@@ -24,6 +24,7 @@ main = do
   spawn "trayer --edge top --align right --SetDockType true --SetPartialStrut true --expand true --width 10 --transparent true --tint 0x000000 --height 20 --monitor primary &"
   spawn "(setxkbmap pl; xmodmap -e \"keycode 248 = 0x1008FF40\")&"
   spawn "volumeicon &"
+
   xmpproc <- spawnPipe "xmobar ~/.xmonad/xmobar.hs"
   spawnStartupApps
   xmonad $ defaultConfig { startupHook = setWMName "LG3D"
