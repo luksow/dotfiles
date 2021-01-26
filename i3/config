@@ -154,11 +154,14 @@ bindsym Print exec scrot
 # finds out, if available)
 bar {
 	tray_output primary
-        status_command i3status
+        status_command better_i3status
 }
 
 exec dropbox
 exec wicd-gtk --tray
 exec volumeicon
 exec /home/luke/.screenlayout/nowoberestecka.sh
-setxkbmap pl
+exec setxkbmap pl
+
+bindsym $mod+Ctrl+Shift+l exec "~/scripts/fuzzy-lock"
+exec xautolock -time 5 -locker '~/scripts/fuzzy-lock' &
